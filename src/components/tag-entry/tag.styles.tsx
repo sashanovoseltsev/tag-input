@@ -91,6 +91,8 @@ export const TagBase = styled.span`
   color: inherit;
   background-color: ${colors.mainBackground};
 
+  // text overflow elipsis
+
   &:hover {
     background-color: ${colors.hoverBackground};
     box-shadow: 0 0 0 2.5px ${colors.hoverBackground};

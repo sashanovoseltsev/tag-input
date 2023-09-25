@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 import { fontSizes } from "../../global.styles";
 
 export const TagsInputContainer = styled.div`
-    display: inline-flex;
-    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
     height: 4.8rem;
@@ -11,7 +11,7 @@ export const TagsInputContainer = styled.div`
     background-color: rgba(255, 255, 255, .7);
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;
-    
+    border-radius: 4px;
     
     transition: all .2s;
 
@@ -21,7 +21,6 @@ export const TagsInputContainer = styled.div`
     }
 
     .tags-input__input {
-      width: 100%;
       margin-left: 1rem;
       outline: none;
       border: none;

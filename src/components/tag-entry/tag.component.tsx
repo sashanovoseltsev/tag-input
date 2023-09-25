@@ -19,15 +19,16 @@ const getTag = (type = TAG_TYPES.base): typeof TagBase =>
 interface Props {
   value: string;
   type?: TAG_TYPES;
+  onRemove?: (tagValue: string) => void;
 }
 
-const Tag = ({ value, type = TAG_TYPES.base }: Props) => {
+const Tag = ({ value, onRemove, type = TAG_TYPES.base }: Props) => {
   const TagCustom = getTag(type);
 
   return (
     <TagCustom>
       <span>{value}</span>
-      <TagBtn>×</TagBtn>
+      <TagBtn onClick={(e) => onRemove && onRemove(value)}>×</TagBtn>
     </TagCustom>
   );
 }
