@@ -41,8 +41,4 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0 auto;
 
   }
-
-  .pulse-element {
-    animation: pulse .3s ease-out;
-  }
 `;

@@ -1,4 +1,4 @@
-import { styled, css, keyframes } from "styled-components";
+import { styled, keyframes } from "styled-components";
 
 import { fontSizes } from "../../global.styles";
 
@@ -36,20 +36,6 @@ const pulse = keyframes`
     }
 
     75% {
-      box-shadow: 0 0 0 4px ${colors.mainBackground};
-    }
-
-    100% {
-      box-shadow: 0 0 0 0 ${colors.mainBackground};
-    }
-`;
-
-const appearWithScaling = keyframes`
-    0% {
-      box-shadow: 0 0 0 0 ${colors.mainBackground};
-    }
-
-    75% {
       box-shadow: 0 0 0 5px ${colors.mainBackground};
     }
 
@@ -58,7 +44,7 @@ const appearWithScaling = keyframes`
     }
 `;
 
-const appearWithScalingInvalid = keyframes`
+const pulseInvalid = keyframes`
     0% {
       box-shadow: 0 0 0 0 ${colors.invalidBackground};
     }
@@ -72,7 +58,7 @@ const appearWithScalingInvalid = keyframes`
     }
 `;
 
-export const TagEntryBtn = styled.span`
+export const TagBtn = styled.span`
     display: inline-block;
     vertical-align: middle;
     line-height: 1.5rem;
@@ -91,14 +77,7 @@ export const TagEntryBtn = styled.span`
     }
 `;
 
-interface Props {
-  $shouldfadeout?: boolean;
-  $shouldpulse?: boolean;
-  $shouldappear?: boolean;
-  $shouldfadeoutinvalid?: boolean;
-}
-
-export const TagEntryContainer = styled.span<Props>`
+export const TagBase = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -109,35 +88,30 @@ export const TagEntryContainer = styled.span<Props>`
   font-size: ${fontSizes.medium};
   transition: all .25s ease-out;
   cursor: default;
-  
-  ${({ $shouldfadeoutinvalid }) =>
-    $shouldfadeoutinvalid
-      ? css`background-color: ${colors.invalidBackground};
-            color: ${colors.invalidTextColor};`
-      : css`background-color: ${colors.mainBackground};
-            color: inherit;
-      `
-  }
-  
-  ${({ $shouldfadeout, $shouldpulse, $shouldappear, $shouldfadeoutinvalid }) =>
-    $shouldfadeout
-      ? css`animation: ${fadeToLeftWithScaling} .2s ease-in;`
-      : $shouldpulse
-        ? css`animation: ${pulse} .25s ease-out .25s;`
-        : $shouldfadeoutinvalid
-          ? css`animation: ${appearWithScalingInvalid} .25s ease-out, ${fadeToLeftWithScaling} .2s ease-in .9s;`
-          : $shouldappear
-            ? css`animation: ${appearWithScaling} .25s ease-out;`
-            : null
-  }
+  color: inherit;
+  background-color: ${colors.mainBackground};
 
   &:hover {
     background-color: ${colors.hoverBackground};
     box-shadow: 0 0 0 2.5px ${colors.hoverBackground};
   }
 
-  &:hover:has(${TagEntryBtn}:hover) {
+  &:hover:has(${TagBtn}:hover) {
     background-color: ${colors.invalidBackground};
     color: ${colors.invalidTextColor};
     box-shadow: 0 0 0 2.5px ${colors.invalidBackground};}
+`;
+
+export const TagRemoving = styled(TagBase)`
+  animation: ${fadeToLeftWithScaling} .2s ease-in;
+`;
+
+export const TagPulsingOnce = styled(TagBase)`
+  animation: ${pulse} .25s ease-out;
+`;
+
+export const TagDuplicate = styled(TagBase)`
+  background-color: ${colors.invalidBackground};
+  color: ${colors.invalidTextColor};
+  animation: ${pulseInvalid} .25s ease-out, ${fadeToLeftWithScaling} .2s ease-in .9s;
 `;
