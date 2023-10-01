@@ -81,10 +81,10 @@ export const TagBase = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 3rem;
   border-radius: .5rem;
-  padding: 0 .7rem;
   margin-left: .5rem;
+  padding: .5rem .7rem;
+  margin-bottom: .5rem;
   font-size: ${fontSizes.medium};
   transition: all .25s ease-out;
   cursor: default;
